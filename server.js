@@ -3,6 +3,7 @@ CSC3916 HW2
 File: Server.js
 Description: Web API scaffolding for Movie API
  */
+
 require('dotenv').config();
 var express = require('express');
 var http = require('http');
@@ -23,13 +24,11 @@ app.use(passport.initialize());
 
 var router = express.Router();
 
-// scaffolding project
-// contains the method to help create the JSON object required for the HTTP response
 function getJSONObjectForMovieRequirement(req) {
     var json = {
         headers: "No headers",
-        key: process.env.UNIQUE_KEY,      // keep professor scaffold field
-        env: process.env.UNIQUE_KEY,      // add required field for the assignment
+        key: process.env.UNIQUE_KEY,      
+        env: process.env.UNIQUE_KEY,     
         body: "No body",
         query: req.query
     };
@@ -80,46 +79,16 @@ router.post('/signin', (req, res) => {
     }
 });
 
-/*
-router.route('/testcollection')
-    .delete(authController.isAuthenticated, (req, res) => {
-        console.log(req.body);
-        res = res.status(200);
-        if (req.get('Content-Type')) {
-            res = res.type(req.get('Content-Type'));
-        }
-        var o = getJSONObjectForMovieRequirement(req);
-        res.json(o);
-    }
-    )
-    .put(authJwtController.isAuthenticated, (req, res) => {
-        console.log(req.body);
-        res = res.status(200);
-        if (req.get('Content-Type')) {
-            res = res.type(req.get('Content-Type'));
-        }
-        var o = getJSONObjectForMovieRequirement(req);
-        res.json(o);
-    }
-    );
-*/
-
 router.route('/movies')
     .get((req, res) => {
-        // HTTP GET Method
-        // Requires no authentication.
-        // Returns a JSON object with status, message, headers, query, and env.
         var o = getJSONObjectForMovieRequirement(req);
         o.status = 200;
         o.message = "GET movies";
         res.json(o);
     })
     .post((req, res) => {
-        // HTTP POST Method
-        // Requires no authentication.
-        // Returns a JSON object with status, message, headers, query, and env.
         var o = getJSONObjectForMovieRequirement(req);
-        o.status = 200; // REQUIRED by assignment
+        o.status = 
         o.message = "movie saved";
         res.json(o);
     })
